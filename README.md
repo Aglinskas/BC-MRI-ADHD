@@ -12,5 +12,10 @@ ADHD CVAE
 # Requirements
  [ANTSpy](https://github.com/ANTsX/ANTsPy)
 
- 
  Tensorflow (`import tensorflow as tf`) or [instal tf](https://www.tensorflow.org/install)
+ Tensorflow (`import tensorflow as tf`) or [instal tf](https://www.tensorflow.org/install)
+
+
+Scientific python stack: pandas, numpy, scipy, matplotlib, sklearn
+
+
