@@ -29,14 +29,20 @@ def sampling(args):
     return z_mean + K.exp(0.5 * z_log_var) * epsilon
 
 
-def get_MRI_VAE_3D(input_shape=(64,64,64,1), latent_dim=2, batch_size = 32, disentangle=False, gamma=1):
-  #TODO: add discriminator loss, see if there is improvement. Perhaps try on shapes dataset if it's easier...
+def get_MRI_VAE_3D(input_shape=(64,64,64,1),
+                   latent_dim=2,
+                   batch_size = 32,
+                   disentangle=False,
+                   gamma=1,
+                   kernel_size = 3,
+                   filters = 16,
+                   intermediate_dim = 128,
+                   opt=None):
+    #TODO: add discriminator loss, see if there is improvement. Perhaps try on shapes dataset if it's easier...
 
     image_size, _, _, channels = input_shape
-    kernel_size = 3
-    filters = 16
-    intermediate_dim = 128
-    epochs = 10
+    
+    #epochs = 10
     nlayers = 2
       
       # VAE model = encoder + decoder
@@ -136,7 +142,9 @@ def get_MRI_VAE_3D(input_shape=(64,64,64,1), latent_dim=2, batch_size = 32, dise
         vae_loss = K.mean(reconstruction_loss) + K.mean(kl_loss)
 
     vae.add_loss(vae_loss)
-    opt = tf.keras.optimizers.Adam(learning_rate=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-07,amsgrad=False,name='Adam')
+    
+    if type(opt)==type(None):
+        opt = tf.keras.optimizers.Adam(learning_rate=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-07,amsgrad=False,name='Adam')
         
     #vae.compile(optimizer='rmsprop')
     vae.compile(optimizer=opt)
@@ -149,13 +157,20 @@ def get_MRI_VAE_3D(input_shape=(64,64,64,1), latent_dim=2, batch_size = 32, dise
 
 
 
-def get_MRI_CCVAE_3D(input_shape=(64,64,64,1), latent_dim=2, beta=1, disentangle=False, gamma=1, bias=True, batch_size = 64):
+def get_MRI_CVAE_3D(input_shape=(64,64,64,1),
+                    latent_dim=2,
+                    beta=1,
+                    disentangle=False,
+                    gamma=1,
+                    bias=True,
+                    batch_size = 64,
+                    kernel_size = 3,
+                    filters = 32,
+                    intermediate_dim = 128,
+                    opt=None):
 
     image_size, _, _, channels = input_shape
-    kernel_size = 3
-    filters = 32
-    intermediate_dim = 128
-    epochs = 10
+    #epochs = 10
     nlayers = 2
 
     # build encoder model
@@ -336,7 +351,8 @@ def get_MRI_CCVAE_3D(input_shape=(64,64,64,1), latent_dim=2, beta=1, disentangle
     cvae_loss = tf.keras.backend.mean(reconstruction_loss + beta*kl_loss + gamma*tc_loss + discriminator_loss)
     cvae.add_loss(cvae_loss)
     
-    opt = tf.keras.optimizers.Adam(learning_rate=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-07,amsgrad=False,name='Adam')
+    if type(opt)==type(None):
+        opt = tf.keras.optimizers.Adam(learning_rate=0.001,beta_1=0.9,beta_2=0.999,epsilon=1e-07,amsgrad=False,name='Adam')
     
 #     opt = tf.keras.optimizers.SGD(
 #     learning_rate=0.01, momentum=0.0, nesterov=False, name='SGD')
