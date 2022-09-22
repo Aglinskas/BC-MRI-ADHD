@@ -1,4 +1,4 @@
-Subject,ScanDir ID,Site,Gender,Age,Handedness,DX,Secondary Dx ,ADHD Measure,ADHD Index,Inattentive,Hyper/Impulsive,IQ Measure,Verbal IQ,Performance IQ,Full2 IQ,Full4 IQ,Med Status,QC_Rest_1,QC_Rest_2,QC_Rest_3,QC_Rest_4,QC_Anatomical_1,QC_Anatomical_2,ID
+,ScanDir ID,Site,Gender,Age,Handedness,DX,Secondary Dx ,ADHD Measure,ADHD Index,Inattentive,Hyper/Impulsive,IQ Measure,Verbal IQ,Performance IQ,Full2 IQ,Full4 IQ,Med Status,QC_Rest_1,QC_Rest_2,QC_Rest_3,QC_Rest_4,QC_Anatomical_1,QC_Anatomical_2,ID
 0,26001.0,2,1.0,16.92,1,pending,pending,pending,pending,pending,pending,,133.0,104.0,,120.0,pending,1.0,,,,1.0,,
 1,26002.0,2,1.0,15.68,1,pending,pending,pending,pending,pending,pending,,106.0,106.0,,107.0,pending,1.0,,,,1.0,,
 2,26004.0,2,0.0,14.99,1,pending,pending,pending,pending,pending,pending,,119.0,123.0,,125.0,pending,1.0,,,,1.0,,
